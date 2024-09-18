@@ -1,0 +1,5 @@
+const h1 = document.createElement('h1')
+const div = document.querySelector('div')
+h1.append('Привіт, світ')
+div.append(h1)
+h1.classList.add('red-text')
