@@ -1,5 +1,5 @@
 import React from 'react'
-//import NewCompon from './NewCompon.js';
+import'./style.css';
 const App = (props)=>{
     const obj = {
         fN:'Vova',
