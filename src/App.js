@@ -2,12 +2,26 @@ import React from 'react'
 import Aloha from './components/Aloha';
 import Lamp from './components/Light/'
 import Octopus from './components/Octopus';
-const App = (props)=>{
-    const obj = {
-        fN:'Vova',
-        lN:'Dvorskii'
+import Tree from './components/Tree';
+class App extends React.Component{
+    constructor(props) {
+        super(props)
+        this.state={
+            render:true
+        }
     }
-    return <Octopus key='value'/>
-    //return <h1 className='red-text'><Aloha/> {obj.fN} {obj.lN}</h1>
+    changeRender=()=>{
+        this.setState({
+            render:!this.state.render
+        })
+    }
+    render(){
+        return(<section>
+                <button onClick={this.changeRender}>Change render</button>
+                <p>Tree is {this.state.render ? 'render' : 'off render'}</p>
+                {this.state.render? <Tree />: null}
+            </section>)
+    } 
+
 }
 export default App
