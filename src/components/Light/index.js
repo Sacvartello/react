@@ -8,7 +8,7 @@ class Lamp extends React.Component{
     }
     changeLamp=()=>{
         this.setState({
-            ligth:'off'
+            ligth: this.state.ligth === 'on'?'off':'on'
         })
     }
     render=()=>{
