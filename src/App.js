@@ -6,14 +6,15 @@ import Tree from './components/Tree';
 import Timer from './components/Timer';
 import Counter from './components/Counter';
 import UserForm1 from './components/UserForm1';
-import PageUsers from './components/PageUsers';
+import PageUsers from './pages/PageUsers';
+import ListPage from './pages/ListPage'
 class App extends React.Component{
     constructor(props) {
         super(props)
     }
     render(){
         return  <div>
-                    <PageUsers/>
+                    <ListPage/>
                 </div>
     } 
 

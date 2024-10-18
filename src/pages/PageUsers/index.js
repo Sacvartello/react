@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import User from './User';
+import User from './../../components/User';
 import './style.css'
 class PageUsers extends Component {
     constructor(props) {
