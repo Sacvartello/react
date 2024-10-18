@@ -9,13 +9,14 @@ import UserForm1 from './components/UserForm1';
 import PageUsers from './pages/PageUsers';
 import ListPage from './pages/ListPage'
 import GridPage from './pages/GridPage';
+import FlexPage from './pages/FlexPage'
 class App extends React.Component{
     constructor(props) {
         super(props)
     }
     render(){
         return  <div>
-                    <GridPage/>
+                    <FlexPage/>
                 </div>
     } 
 
