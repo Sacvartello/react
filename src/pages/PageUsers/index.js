@@ -24,7 +24,6 @@ class PageUsers extends Component {
     load=()=>{
         getUsers(this.state.page)
         .then(data =>{
-            console.log(data);
             this.setState({
                 users:data.results,
             })
@@ -52,12 +51,20 @@ class PageUsers extends Component {
             page: this.state.page +1
         }))
     }
+    prevBtnHandler=()=>{
+        if(this.state.page !== 1){
+            this.load(this.setState({
+                page: this.state.page -1
+            }))
+        }
+    }
 
     render() {
         const layout = this.state.users.map(us => <User user={us} key={us.login.uuid}/>)
         const errMes = <p>Opps, something went wrong(</p>
         return (
             <section className='page'>
+                <button onClick={this.prevBtnHandler}>Prev page</button>
                 <button onClick={this.nextBtnHandler}>Next page</button>
                 {this.state.error && errMes}
                 {this.state.isLoading && <Spinner/>}
