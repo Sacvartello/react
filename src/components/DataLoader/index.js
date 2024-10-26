@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { isLeapYearWithOptions } from 'date-fns/fp';
 
 class DataLoader extends Component {
     constructor(props) {
