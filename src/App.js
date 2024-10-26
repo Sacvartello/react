@@ -10,13 +10,14 @@ import PageUsers from './pages/PageUsers';
 import ListPage from './pages/ListPage'
 import GridPage from './pages/GridPage';
 import FlexPage from './pages/FlexPage'
+import LoaderPage from './pages/LoaderPage';
 class App extends React.Component{
     constructor(props) {
         super(props)
     }
     render(){
         return  <div>
-                    <PageUsers/>
+                    <LoaderPage/>
                 </div>
     } 
 
