@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // import Aloha from './components/Aloha';
 // import Lamp from './components/Light/'
 // import Octopus from './components/Octopus';
@@ -11,36 +11,49 @@ import React from 'react'
 // import GridPage from './pages/GridPage';
 // import FlexPage from './pages/FlexPage'
 // import LoaderPage from './pages/LoaderPage';
-import ContextTree from './components/ContextTree'
-import ContextObj from './context'
-class App extends React.Component{
-    constructor(props) {
-        super(props)
-        this.state={
-            user:{
-                id:1,
-                firstName:'John',
-                lastName:'Wick',
-                pict:'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png'
-            }
-        }
-    }
+import ContextTree from "./components/ContextTree";
+import UserContextObj from "./context/UserContext";
+import ThemeContextObj from "./context/ThemeContext";
+import CONSTANS from "./constants";
+const {THEMES} = CONSTANS
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {
+        id: 1,
+        firstName: "John",
+        lastName: "Wick",
+        pict: "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+      },
+      theme:CONSTANS.THEMES.LIGHT
+    };
+  }
 
-    logOut=()=>{
-        this.setState({
-            user:{}
-        })
-    }
+  logOut = () => {
+    this.setState({
+      user: {},
+    });
+  };
 
-    render(){
-        console.log(ContextObj.Provider, ContextObj.Consumer);
-        return (<div>
-                <ContextObj.Provider value={this.state}>
-                    <ContextTree/>
-                </ContextObj.Provider>
-                <button onClick={this.logOut}>Log Out</button>
-                </div>)
-    } 
+  changeTheme=()=>{
+    this.setState({
+      theme: this.state.theme===THEMES.LIGHT? THEMES.DARK: THEMES.LIGHT
+    })
+  }
 
+  render() {
+    console.log(UserContextObj.Provider, UserContextObj.Consumer);
+    return (
+      <div>
+        <ThemeContextObj.Provider value={[this.state.theme,this.changeTheme]}>
+            <UserContextObj.Provider value={this.state}>
+                <ContextTree />
+            </UserContextObj.Provider>
+            <button onClick={this.logOut}>Log Out</button>
+        </ThemeContextObj.Provider>
+      </div>
+    );
+  }
 }
-export default App
+export default App;
