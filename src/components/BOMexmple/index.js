@@ -8,15 +8,19 @@ class BOM extends React.Component{
             height:window.innerHeight
         }
     }
+    componentDidMount(){
+        window.addEventListener('resize', this.changeScreen)
+    }
+    componentWillUnmount(){
+        window.removeEventListener('resize', this.changeScreen)
+    }
     changeScreen=()=>{
             this.setState({
                 width:window.innerWidth,
                 height:window.innerHeight
             })
-        }
-
+    }
     render(){
-        window.addEventListener('resize', this.changeScreen)
         return (
             <div>
                 <h1>{this.state.width} {this.state.height}</h1>
