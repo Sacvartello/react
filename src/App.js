@@ -22,7 +22,7 @@ class App extends React.Component {
     this.state = {
       user: {
         id: 1,
-        firstName: "John",
+        firstName: "JohN",
         lastName: "Wick",
         pict: "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
       },
@@ -47,8 +47,8 @@ class App extends React.Component {
     return (
       <div>
         <ThemeContextObj.Provider value={[this.state.theme,this.changeTheme]}>
-            <UserContextObj.Provider value={this.state}>
-                <ContextTree />
+            <UserContextObj.Provider value={this.state.user}>
+                <ContextTree im='v'/>
             </UserContextObj.Provider>
             <button onClick={this.logOut}>Log Out</button>
         </ThemeContextObj.Provider>
