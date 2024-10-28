@@ -6,7 +6,7 @@ import Tree from './components/Tree';
 // import Timer from './components/Timer';
 // import Counter from './components/Counter';
 // import UserForm1 from './components/UserForm1';
-// import PageUsers from './pages/PageUsers';
+import PageUsers from './pages/PageUsers';
 // import ListPage from './pages/ListPage'
 // import GridPage from './pages/GridPage';
 // import FlexPage from './pages/FlexPage'
@@ -23,7 +23,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <Octopus/>
+        <PageUsers/>
       </div>
     );
   }

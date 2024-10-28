@@ -1,77 +1,56 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import User from './../../components/User';
 import { getUsers } from '../../api/getUsers';
 import './style.css'
 import Spinner from '../../components/Spinner';
-class PageUsers extends Component {
-    constructor(props) {
-        super(props)
-        this.state ={
-            users:[],
-            isLoading:false,
-            error: null,
-            page:1
-        }
-    }
+const PageUsers =(props)=>{
+    const [users, setUsers] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(null)
+    const [page, setPage] = useState(1)
 
-    componentDidMount(){
-        this.setState({
-            isLoading:true
-        })
-        this.load()
-    }
+    useEffect(()=>{
+        setIsLoading(true)
+        load()
+    }, [page])
 
-    load=()=>{
-        getUsers(this.state.page)
+    const load=()=>{
+        getUsers(page)
         .then(data =>{
-            this.setState({
-                users:data.results,
-            })
+            setUsers(data.results)
         })
         .catch(err=>{
-            this.setState({
-                error:err
-            })
+            setError(err)
         })
         .finally(()=>{
-            this.setState({
-                isLoading:false
-            })
+            setIsLoading(false)
         })
     }
-
-    componentDidUpdate=(prevProps,prevState)=>{
-        if(prevState.page !== this.state.page){
-            this.load()
+    // componentDidUpdate=(prevProps,prevState)=>{
+    //     if(prevState.page !== this.state.page){
+    //         this.load()
+    //     }
+    // }
+    function nextBtnHandler(){
+        load(setPage(page +1))
+    }
+    const prevBtnHandler=()=>{
+        if(page > 1){
+            load(setPage(page -1))
         }
     }
 
-    nextBtnHandler=()=>{
-        this.load(this.setState({
-            page: this.state.page +1
-        }))
-    }
-    prevBtnHandler=()=>{
-        if(this.state.page !== 1){
-            this.load(this.setState({
-                page: this.state.page -1
-            }))
-        }
-    }
-
-    render() {
-        const layout = this.state.users.map(us => <User user={us} key={us.login.uuid}/>)
-        const errMes = <p>Opps, something went wrong(</p>
-        return (
-            <section className='page'>
-                <button onClick={this.prevBtnHandler}>Prev page</button>
-                <button onClick={this.nextBtnHandler}>Next page</button>
-                {this.state.error && errMes}
-                {this.state.isLoading && <Spinner/>}
-                {layout}
-            </section>
-        );
-    }
+    const layout = users.map(us => <User user={us} key={us.login.uuid}/>)
+    const errMes = <p>Opps, something went wrong(</p>
+    return (
+        <section className='page'>
+            {isLoading? null: <button onClick={prevBtnHandler}>Prev page</button>}
+            {isLoading? null: <button onClick={nextBtnHandler}>Next page</button>}
+            {error && errMes}
+            {isLoading && <Spinner/>}
+            {isLoading? null: layout}
+        </section>
+    );
 }
 
 export default PageUsers;
