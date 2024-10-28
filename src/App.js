@@ -1,7 +1,7 @@
 import React from "react";
 // import Aloha from './components/Aloha';
 // import Lamp from './components/Light/'
-// import Octopus from './components/Octopus';
+import Octopus from './components/Octopus';
 import Tree from './components/Tree';
 // import Timer from './components/Timer';
 // import Counter from './components/Counter';
@@ -23,14 +23,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <BrowserRouter>
-          <Switch>
-            <Route path='/home'><BOM/></Route>
-            <Route path='/tree'><Tree/></Route>
-          </Switch>
-          <Link to='/home'>to home</Link>
-          <Link to='/tree'>to tree</Link>
-        </BrowserRouter>
+        <Octopus/>
       </div>
     );
   }
